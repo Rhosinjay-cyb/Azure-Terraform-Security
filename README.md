@@ -1,6 +1,6 @@
 ## Project Title
 
-Azure Infrastructure Automation with Terraform and Security Scanning
+Azure Infrastructure Automation with Terraform and Security Scanning with Checkov
 
 ## Objective
 
