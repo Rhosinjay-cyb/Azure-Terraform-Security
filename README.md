@@ -1,41 +1,30 @@
 ## Project Title
 
-Azure Infrastructure Automation with Terraform and Security Scanning with Checkov
+Shift-left Security Approach to the Deployment of Azure infrastructure with Third-party Tools
 
 ## Objective
 
-The aim of this project is to design a playbook with Azure Logic Apps and integrate it with Microsoft Sentinel via automation rule to facilitate automated response to security incidents in Microsoft Sentinel, thereby supporting the effective management of security operations (SecOps).
+The aim of this project is to demonstrate a shift-left security approach in the deployment of Azure infrastructure by implementing the security scanning of Iac with Checkov to identify and remediate misconfigurations before deployment. It also demonstrate the leveraging of tools in the Microsoft security stack to secure access to some of the deployed infrastructure.
 
 ## Tools Used
 
-Microsoft Sentinel, Microsoft Defender Portal, Azure Logic Apps
+Terraform, Checkov, Cloudshell, Azure Key Vault, Azure Bastion
 
 
 ## Lab Setup
-* Creation of analytics rule
-* Designing the workflow of the playbook with Azure Logic Apps
-* Creation of automation rule (Integration of the playbook with the security incident)
-* Testing of the playbook
+* Creation of a new directory for Terraform and configuration of its files via cloudshell
+* Deployment of Azure infrastructure with Terraform
+* Configuration of security add-ons
+* Implementation of security scanning and remediation
 
-
-
-## Background Information
-This project marks the continuation of my project on managing security operation with tools from the Microsoft security stack. Prior to the commencement of this project, the following resources and services (Azure Bastion, Project-BST; Virtual Machine , Sales-VM; Virtual Network, Project-vnet; Subnet, Sales-vnet & AzureBastionSubnet; Microsoft Sentinel integrated-Log Analytics Workspace, Project-workspace; all in the same resource group, Project-RG) have already been deployed and will be used during the testing phase of this project. Additionally, the diagnostic settings of Azure Bastion (Project-BST) has also already been enabled and its events logs are being sent to the Microsoft Sentinel integrated-Log Analytics Workspace (Project-workspace) for analysis.
-
-To put this project into context, the sales department has a virtual machine (Sales-VM) which host critical applications and data, and would want to enhance its security. The department approved Azure Bastion and a particular IP address for remote connection to the VM. The department wants every other IPs to be deemed untrusted and such connections should be blocked. Hence, the security solution for the sales department is the core of this project. 
-
-Initially, each of the IPs that are used for the remote connection could be monitored from the event logs stored in MicrosoftAzureBastionAuditLogs table in the Project-workspace.
-To provide a solution to the sales department security challenge, an analytics rule will be created to detect remote connection with untrusted IPs, the playbook workflow will be designed, and the automation rule attached to the analytics rule will be utilized to trigger the playbook. The main actions of the playbook is to block the inbound connection to the VM, particularly RDP traffic, once the attack is detected. However, the blocked traffic will only prevent future remote connection to the VM while the attacker's remote session remains active. The next action is to identify the attacker's remote session among all active remote sessions and shut it off. The last action of the playbook is to send an email notification about the result of the playbook to relevant members of the security operations team for neccessary actions.
-
-The creation of the analytics rule and the design of the workflow in the playbook will be discussed in the next section, while the testing of the playbook and conclusion follows respectively.
 
 ## Steps Taken
 
 The project was accomplished in the following order
 
-### Creation of Analytics Rule
+### Creation of a new directory for Terraform and configuration of its files via cloudshell
 
-The project commenced with the creation of a scheduled analytics rule with the title 'UnusualBastionAccess' to detect remote connections to the Sales-VM via Azure Bastion with an untrusted IP.
+Cloudshell was launched from Azure Portal, and a storage was specified to store created files. Although the creating a storage 
 
 ![image](Images/A.Rule.png)
 
