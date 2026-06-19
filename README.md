@@ -8,7 +8,7 @@ The aim of this project is to demonstrate a shift-left security approach in the 
 
 ## Tools Used
 
-Terraform, Checkov, Cloudshell, Azure Key Vault, Azure Bastion
+Terraform, Checkov, Azure Cloudshell, Azure Key Vault, Azure Bastion
 
 
 ## Lab Setup
@@ -17,6 +17,12 @@ Terraform, Checkov, Cloudshell, Azure Key Vault, Azure Bastion
 * Configuration of security add-ons
 * Implementation of security scanning and remediation
 
+## Background Information
+The project is aimed at enforcing a shift-left security principle to support both infrastructure and DevOps engineering. These aspects of engineering play a vital role in software development, and infrastructure as code (IaC) is common to both of them. Due to long line of code for deployment, manual scanning makes the code succesptible for vulnerabilities. However, applying an automated security scanning allows the misconfigurations tobe detected and remediated before deployment.
+
+Consequently, this project aim at deploying Azure Infrastructure (VMs, Vnets, NSGs, RG, Subnets) with Terraform and implementing security scanning of IaC to get rid of misconfigurations. The main infrastructure in this project is the Linux VM. In this project we will be using a ssh key pair for authenticating against the Linux VM. While the ssh key pair is generated, the public key will sent to Azure by Terraform during VM creation while the private key will kept for logon.
+
+Furthermore, Azure Bastion will be deployed for secured logon to the VM. Initially, the private key will be imported as a file from the local computer. Afterwards, Azure Key vault will be used to secure the key as an object and the private key will be integrated by the key vault.  Lastly, Checkov is initialized to scan the IaC, getting rid of misconfigurations in future deployments.
 
 ## Steps Taken
 
@@ -24,19 +30,26 @@ The project was accomplished in the following order
 
 ### Creation of a new directory for Terraform and configuration of its files via cloudshell
 
-Cloudshell was launched from Azure Portal, and a storage was specified to store created files. Although the creating a storage 
+Azure Cloudshell was launched from Azure Portal, and a storage was specified to store created files. Although the integration of a storage account is optional, it keeps the file intact when the cloudshell session is restarted. In the cloudshell session a new directory was created and Terraform was initialized in the directory with 'Terraform init' command, followed with the configuration of .tf files.
 
 ![image](Images/A.Rule.png)
 
-### Creation of the Azure Logic App playbook
+### Deployment of Azure infrastructure with Terraform
 
-The playbook is created with Microsoft Sentinel incident as the trigger. While creating the playbook the subscription and resource group is specified alongside the tier of the Azure Logic App.
+After the neccessary files are in place, the command 'Terraform plan' was used to generate a preview of changes Terraform intends to make. 
+
+
+Afterwards, 'Terraform Apply' command is used to apply the changes generated from the last command basically creating the infrastructure.  
 
 ![image](Images/CR.Playbook.png)
 
-### Designing the workflow of the playbook
 
-Following the creation of the playbook, the the workflow of the playbook from trigger to the last action was designed with the logic app designer blade.
+
+Checking through the Azure portal to confirm if the infrastructure were successfully deployed. It was confirmed that all of the infrastructure specified in the .tf files were created ranging from the resource group to the virtual machine. 
+
+### Configuration of security add-ons
+
+One of the deployed infrastructure is the virtual machine
 
 ![image](Images/Workflow.png)
 
