@@ -22,6 +22,8 @@ The project is aimed at enforcing a shift-left security principle to support bot
 
 Consequently, this project aim at deploying Azure Infrastructure (VMs, Vnets, NSGs, RG, Subnets) with Terraform and implementing security scanning of IaC to get rid of misconfigurations. The main infrastructure in this project is the Linux VM. In this project we will be using a ssh key pair for authenticating against the Linux VM. While the ssh key pair is generated, the public key will sent to Azure by Terraform during VM creation while the private key will kept for logon.
 
+![image](Images/keygenpng)
+
 Furthermore, Azure Bastion will be deployed for secured logon to the VM. Initially, the private key will be imported as a file from the local computer. Afterwards, Azure Key vault will be used to secure the key as an object and the private key will be integrated by the key vault.  Lastly, Checkov is initialized to scan the IaC, getting rid of misconfigurations in future deployments.
 
 ## Steps Taken
@@ -32,42 +34,64 @@ The project was accomplished in the following order
 
 Azure Cloudshell was launched from Azure Portal, and a storage was specified to store created files. Although the integration of a storage account is optional, it keeps the file intact when the cloudshell session is restarted. In the cloudshell session a new directory was created and Terraform was initialized in the directory with 'Terraform init' command, followed with the configuration of .tf files.
 
-![image](Images/A.Rule.png)
+![image](Images/edit_folder.png)
+
+![image](Images/Init.png)
 
 ### Deployment of Azure infrastructure with Terraform
 
 After the neccessary files are in place, the command 'Terraform plan' was used to generate a preview of changes Terraform intends to make. 
 
+![image](Images/plan1.png)
+![image](Images/plan2.png)
 
 Afterwards, 'Terraform Apply' command is used to apply the changes generated from the last command basically creating the infrastructure.  
-
-![image](Images/CR.Playbook.png)
-
-
+![image](Images/plan3.png)
+![image](Images/plan4.png)
 
 Checking through the Azure portal to confirm if the infrastructure were successfully deployed. It was confirmed that all of the infrastructure specified in the .tf files were created ranging from the resource group to the virtual machine. 
+
+![image](Images/result.png)
+![image](Images/result2.png)
 
 ### Configuration of security add-ons
 
 Azure Bastion was deployed to enable secured access to the virtual machine.
 
+![image](Images/create_bastion.png)
+
 Recall that the ssh public key has already been integrated in the VM by Azure. Here, the private key is specified to complete the authentication. 
 
+![image](Images/access_vm.png)
 
 Confirmed the successful logon to the Linux VM.
 
+![image](Images/access_vm2.png)
 
-Rather than uploading the ssh private key during authentication which is quite risky. A key vault was created in Azure key vault to store the ssh private key as an object.
+Rather than uploading the ssh private key during authentication which is quite risky. A key vault was created in Azure key vault to store the ssh private key as a secret.
 
+![image](Images/createkeyvault.png)
 
+To create a secret in the key vault, the user was assigned the appropriate RBAC role.
+
+![image](Images/rbac.png)
+![image](Images/rbac2.png)
+
+Afterwards, the secret is now created, via Azure Cloudshell
+
+![image](Images/create_secret2.png)
+
+The creation of the secret was confirmed from Azure portal.
+
+![image](Images/succ_key.png)
 
 Subsequent logon to the Linux VM now utilize the object in the key vault, hence strengthening the security of the deployed VM.
 
+![image](Images/conn.png)
 
+Confirmed the successful logon to the Linux VM.
 
-
-
-
+![image](Images/succ_conn.png)
 
 ### Implementation of security scanning and remediation
 
