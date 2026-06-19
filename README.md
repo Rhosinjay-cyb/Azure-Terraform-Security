@@ -22,7 +22,7 @@ The project is aimed at enforcing a shift-left security principle to support bot
 
 Consequently, this project aim at deploying Azure Infrastructure (VMs, Vnets, NSGs, RG, Subnets) with Terraform and implementing security scanning of IaC to get rid of misconfigurations. The main infrastructure in this project is the Linux VM. In this project we will be using a ssh key pair for authenticating against the Linux VM. While the ssh key pair is generated, the public key will sent to Azure by Terraform during VM creation while the private key will kept for logon.
 
-![image](Images/keygenpng)
+![image](Images/keygen.png)
 
 Furthermore, Azure Bastion will be deployed for secured logon to the VM. Initially, the private key will be imported as a file from the local computer. Afterwards, Azure Key vault will be used to secure the key as an object and the private key will be integrated by the key vault.  Lastly, Checkov is initialized to scan the IaC, getting rid of misconfigurations in future deployments.
 
