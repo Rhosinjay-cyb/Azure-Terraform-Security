@@ -75,19 +75,35 @@ Checkov is the third-party tool used for the security scanning of the IaC. The p
 
 
 
-While in the Terraform-lab directory, the command 'Checkov -d .' was ran to scan the IaC. However, running the command outside the directory will require specifying the path to the directory. 
+While in the Terraform-lab directory, the command 'Checkov -d .' was ran to scan the IaC. However, running the command outside the directory will require specifying the path to the directory. The result of the security scan is shown below.
 
 
 
 
+
+
+From the scan result, it shows we have three misconfigurations to rectify.
+
+
+
+
+Remediating the first miconfiguration, 'ensure that SSH access is restricted from the internet,' the source address prefix is restricted to the AzureBastionSubnet. This ensures that only connections established from the subnet could connect to the VM.
+
+
+The second misconfiguration 'ensure virtual machine extensions are not installed' was investigted. It was observed that the VM has no extension, hence the error was skipped.
+
+
+The last misconfiguration 'ensure VNET subnet is configured with a network security group (NSG)' was remediated by assosciating the subnet to a NSG. This allows the assocuaition of relevant NSG security rule to the subnet, thereby enhancing the security of the subnet.
+
+
+Having remediated all the misconfigurations, the IaC was re-scanned, and no error was detected.
 
 
 
 
 
 ## Conclusion
-
-This project succesfully demonstrates the implementation of playbooks in supporting incident response while enhancing the management of security operations. It also provides valuable insights into designing and orchestrating workflows in Azure Logic Apps for seamless integration with Microsoft Sentinel. Overall, the project highlights the end-to-end management of real-world security incidents covering the complete incident lifecycle from detection and containment to recovery and closure.
+This project succesfully demonstrate a shift-left security approach to provisioning infrastructure. In a wider context, this relates to securing a software development lifecycle (SDLC). Additionally, the skills exhibited on this project represents a part of the  skills required of a DevSecOps or a security engineer collaborating with the DevOps team to work effectively.
 
 ## Past Project
 
