@@ -20,9 +20,11 @@ Terraform, Checkov, Azure Cloudshell, Azure Key Vault, Azure Bastion
 * Implementation of security scanning and remediation
 
 ## Background Information
-The project is aimed at enforcing a shift-left security principle to support both infrastructure and DevOps engineering. These aspects of engineering play a vital role in software development, and infrastructure as code (IaC) is common to both of them. Due to long line of code for deployment, manual scanning makes the code succesptible for vulnerabilities. However, applying an automated security scanning allows the misconfigurations tobe detected and remediated before deployment.
+The project is designed to demonstrate the application of the shift-left security principle in support of both infrastructure engineering and DevOps practices. As IaC has become a fundamental componenet of modern infrastructure provisioning and software delivey, ensuring the security of IaC configuraion is esential.
 
-Consequently, this project aim at deploying Azure Infrastructure (VMs, Vnets, NSGs, RG, Subnets) with Terraform and implementing security scanning of IaC to get rid of misconfigurations. The main infrastructure in this project is the Linux VM. In this project we will be using a ssh key pair for authenticating against the Linux VM. While the ssh key pair is generated, the public key will sent to Azure by Terraform during VM creation while the private key will kept for logon.
+Given the complexity and scale of IaC deployments, manual code reviews may fail to identify critical security miscogiguration and vulnerabilities. To address this challenge, the project integrates automated security scanning intothe development workflow, enabling potentiak risks to be detected and  and remediated before deployment. By identifying security issues early in the development lifecycle, this aproach enhances the security, reliability, and compliance of Azure infrastructure deployments while reducing the likelihood of costly post-deployment remediation.
+
+theConsequently, this project aim at deploying Azure Infrastructure (VMs, Vnets, NSGs, RG, Subnets) with Terraform and implementing security scanning of IaC to get rid of misconfigurations. The main infrastructure in this project is the Linux VM. In this project we will be using a ssh key pair for authenticating against the Linux VM. While the ssh key pair is generated, the public key will sent to Azure by Terraform during VM creation while the private key will kept for logon.
 
 ![image](Images/keygen.png)
 
