@@ -95,33 +95,39 @@ Confirmed the successful logon to the Linux VM.
 
 ### Implementation of security scanning and remediation
 
-Checkov is the third-party tool used for the security scanning of the IaC. The process begin with the installation of Chekov. The installation could be confirmed by checking the version installed.
+Checkov is the third-party tool used for the security scanning of the IaC. The process begin with the installation of Chekov. The installation was confirmed by checking the version installed.
 
+![image](Images/checkov.png)
+![image](Images/checkov2.png)
 
+While in the Terraform-lab directory, the command 'Checkov -d .' was ran to scan the IaC. However, running the command outside the directory will require specifying the path to the directory. From the scan result, it shows we have three misconfigurations to rectify.
 
-While in the Terraform-lab directory, the command 'Checkov -d .' was ran to scan the IaC. However, running the command outside the directory will require specifying the path to the directory. The result of the security scan is shown below.
+![image](Images/sec_scan.png)
 
+The scan result is mainly grouped into two categories, passed checks and failed checks. 
+The passed checks indicate that the configurations are correct
 
+![image](Images/passed.png)
 
+while the failed checks indicate misconfiguration.
 
-
-
-From the scan result, it shows we have three misconfigurations to rectify.
-
-
-
+![image](Images/failed.png)
+![image](Images/failed2.png)
 
 Remediating the first miconfiguration, 'ensure that SSH access is restricted from the internet,' the source address prefix is restricted to the AzureBastionSubnet. This ensures that only connections established from the subnet could connect to the VM.
 
+![image](Images/restrict.png)
 
-The second misconfiguration 'ensure virtual machine extensions are not installed' was investigted. It was observed that the VM has no extension, hence the error was skipped.
+The next misconfiguration 'ensure VNET subnet is configured with a network security group (NSG)' was remediated by assosciating the subnet to a NSG. This allows the assocuaition of relevant NSG security rule to the subnet, thereby enhancing the security of the subnet.
+
+![image](Images/assoc.png)
 
 
-The last misconfiguration 'ensure VNET subnet is configured with a network security group (NSG)' was remediated by assosciating the subnet to a NSG. This allows the assocuaition of relevant NSG security rule to the subnet, thereby enhancing the security of the subnet.
-
+The last misconfiguration 'ensure virtual machine extensions are not installed' was investigted. It was observed that the VM has no extension, hence the error was skipped.
 
 Having remediated all the misconfigurations, the IaC was re-scanned, and no error was detected.
 
+![image](Images/remediated.png)
 
 
 
