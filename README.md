@@ -4,7 +4,9 @@ Implementing Shift-left Security for Azure Infrastructure Deployment using Terra
 
 ## Objective
 
-The aim of this project is to demonstrate a shift-left security approach to the deployment of Azure infrastructure by integrating security scanning into the infrastructure as code (Iac) development lifecycle. Using Checkov, the project performs static analysis of Terraform configutations to identify and remediate security misconfigurations before deployment, thereby reducing risk and improving infrastructure security. Additionally, the project showcases the use of security capabilities within the microsoft security stack to implement secure accesscontrols for deployed Azure resources, promoting adherence to cloud security best practices and enhancing the overallsecurity posture of the environment.
+The aim of this project is to demonstrate a shift-left security approach to the deployment of Azure infrastructure by integrating security scanning into the infrastructure as code (Iac) development lifecycle. Using Checkov, the project performs static analysis of Terraform configutations to identify and remediate security misconfigurations before deployment, thereby reducing risk and improving infrastructure security. 
+
+Additionally, the project showcases the use of security capabilities within the microsoft security stack to implement secure access controls for deployed Azure resources, promoting adherence to cloud security best practices and enhancing the overall security posture of the environment.
 
 ## Tools Used
 
