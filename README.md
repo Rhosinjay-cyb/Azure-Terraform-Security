@@ -100,16 +100,16 @@ Checkov is the third-party tool used for the security scanning of the IaC. The p
 ![image](Images/checkov.png)
 ![image](Images/checkov2.png)
 
-While in the Terraform-lab directory, the command 'Checkov -d .' was ran to scan the IaC. However, running the command outside the directory will require specifying the path to the directory. From the scan result, it shows we have three misconfigurations to rectify.
+While in the Terraform-lab directory, the command 'Checkov -d .' was ran to scan the IaC. However, running the command outside the directory will require specifying the path to the directory. From the scan result, it shows we have three failed checks to remediate.
 
 ![image](Images/sec_scan.png)
 
 The scan result is mainly grouped into two categories, passed checks and failed checks. 
-The passed checks indicate that the configurations are correct
+The passed checks indicate that the configurations are accurate,
 
 ![image](Images/passed.png)
 
-while the failed checks indicate misconfiguration.
+while the failed checks indicate a misconfiguration in the IaC.
 
 ![image](Images/failed.png)
 ![image](Images/failed2.png)
@@ -122,14 +122,11 @@ The next misconfiguration 'ensure VNET subnet is configured with a network secur
 
 ![image](Images/assoc.png)
 
-
 The last misconfiguration 'ensure virtual machine extensions are not installed' was investigted. It was observed that the VM has no extension, hence the error was skipped.
 
 Having remediated all the misconfigurations, the IaC was re-scanned, and no error was detected.
 
 ![image](Images/remediated.png)
-
-
 
 
 ## Conclusion
@@ -139,4 +136,4 @@ This project succesfully demonstrate a shift-left security approach to provision
 
 * Deployment of Azure Firewall for secure access and traffic control https://rhosinjay-cyb.github.io/Azure-Firewall/
 * Deployment of Microsoft Sentinel to support cloud workload protection https://rhosinjay-cyb.github.io/Microsoft-Sentinel/
-
+* Automating Security Incident Response with Playbooks https://rhosinjay-cyb.github.io/Incident-Response-with-Playbooks/
