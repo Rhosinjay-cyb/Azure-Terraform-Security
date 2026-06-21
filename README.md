@@ -10,7 +10,7 @@ Additionally, the project showcases the use of security capabilities within the 
 
 ## Tools Used
 
-Terraform, Checkov, Azure Cloudshell, Azure Key Vault, Azure Bastion
+Terraform, Checkov, Azure Cloud Shell, Azure Key Vault, Azure Bastion
 
 
 ## Lab Setup
@@ -24,7 +24,7 @@ Terraform, Checkov, Azure Cloudshell, Azure Key Vault, Azure Bastion
 
 The project is designed to demonstrate the application of the shift-left security principle in support of both infrastructure engineering and DevOps practices. As IaC has become a fundamental component of modern infrastructure provisioning and software delivey, ensuring the security of IaC configuration is essential.
 
-Given the complexity and scale of IaC deployments, manual code reviews may fail to identify critical security misconfiguration and vulnerabilities. To address this challenge, the project integrates automated security scanning into the development workflow, enabling potential risks to be detected and  and remediated before deployment. By identifying security issues early in the development lifecycle, this aproach enhances the security, reliability, and compliance of Azure infrastructure deployments while reducing the likelihood of costly post-deployment remediation.
+Given the complexity and scale of IaC deployments, manual code reviews may fail to identify critical security misconfiguration and vulnerabilities. To address this challenge, the project integrates automated security scanning into the development workflow, enabling potential risks to be detected and remediated before deployment. By identifying security issues early in the development lifecycle, this approach enhances the security, reliability, and compliance of Azure infrastructure deployments while reducing the likelihood of costly post-deployment remediation.
 
 Consequently, this project focuses on deploying Azure Infrastructure including a virtual machine with virtual network, network security group, resource group and a subnet using Terraform and integrating security scanning of IaC to identify and eliminate misconfigurations before deployment. The primary workload deployed in this project is a Linux virtual machine (VM) which is configured to use SSH key-based authentication. During provisioning, Terraform uploads the SSH public key to Azure and configures iton the VM, while the corresponding private key is retained securely for authentication. This approach enhances security by reducing the risk associated with password-based authentication, aligning with cloud security best practices. The SSH key pair is generated as shown in following figure.
 
@@ -36,9 +36,9 @@ Finally, Azure Bastion will be deployed to provide secure browser-based connecti
 
 The project was accomplished in the following order.
 
-### Creation of a new directory for Terraform and configuration of its files via cloudshell
+### Creation of a new directory for Terraform and configuration of its files via Cloud Shell
 
-Azure Cloudshell was launched from Azure Portal, and a storage was specified to store created files. The integration of a storage account is optional,  but it stores the files and makes them available when the cloudshell session is restarted. In the cloudshell session a new directory 'Terraform-lab' was created and Terraform was initialized in the directory with 'Terraform init' command, followed with the configuration of the files. The files with a .tf extension contain declarative infrastructure configurations written in the HashiCorp Configuration Language (HCL). They define what infrastructure components (like virtual machines, networks, and databases) should exist and how they should be configured.
+Azure Cloud Shell was launched from Azure Portal, and a storage was specified to store created files. The integration of a storage account is optional,  but it stores the files and makes them available when the Cloud Shell session is restarted. In the Cloud Shell session a new directory 'Terraform-lab' was created and Terraform was initialized in the directory with 'Terraform init' command, followed with the configuration of the files. The files with a .tf extension contain declarative infrastructure configurations written in the HashiCorp Configuration Language (HCL). They define what infrastructure components (like virtual machines, networks, and databases) should exist and how they should be configured.
 
 ![image](Images/edit_folder.png)
 
@@ -89,7 +89,7 @@ To create a secret in the newly created key vault, the user was assigned the app
 ![image](Images/rbac.png)
 ![image](Images/rbac2.png)
 
-Afterwards, the secret was created, via Azure Cloudshell.
+Afterwards, the secret was created, via Azure Cloud Shell.
 
 ![image](Images/create_secret2.png)
 
@@ -142,7 +142,7 @@ Having remediated all the misconfigurations, the IaC was re-scanned, and no fail
 
 
 ## Conclusion
-This project succesfully demonstrate the application of a shift-left security approach to infrastructure provisioning by integrating security practices early in the IaC development lifecycle.  Furthermore, the project showcases key competencies relevant to DevSecOps and cloud security engineering, including secure infastructure provisioning, IaC security scanning, secrets management, role-based access control, and secure remote access. These capabilities reflect the collaborative role that security engineers play alongside DevOps team in building and maintaining resilient, secure and compliant cloud environments.  
+This project successfully demonstrates the application of a shift-left security approach to infrastructure provisioning by integrating security practices early in the IaC development lifecycle.  Furthermore, the project showcases key competencies relevant to DevSecOps and cloud security engineering, including secure infrastructure provisioning, IaC security scanning, secrets management, role-based access control, and secure remote access. These capabilities reflect the collaborative role that security engineers play alongside DevOps team in building and maintaining resilient, secure and compliant cloud environments.  
 
 ## Past Project
 
