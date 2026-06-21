@@ -30,7 +30,7 @@ Consequently, this project focuses on deploying Azure Infrastructure including a
 
 ![image](Images/keygen.png)
 
-Finally, Azure Bastion will be deployed to provide secure browser-basedconnectivity to the Linux VM without exposing it directly to the internet. Initially, the SSH private key will be imported as a file from the local computer to authennticate remote access. To further strengthen security and improve key management, the private key is subsequently stored securely as a secret in Azure Key Vault and retrieved when needed, eliminating the need to rely on locally stored credentials. Lastly, Checkov will be integrated into the workflow to perform security scanning of the Terraform IaC, enabling security misconfigurations and policy violations to be identified and remediated prior to deployment, reinforcing a shift-left security approach and promoting more secure and compliant infrastructure provisioning.
+Finally, Azure Bastion will be deployed to provide secure browser-based connectivity to the Linux VM without exposing it directly to the internet. Initially, the SSH private key will be imported as a file from the local computer to authennticate remote access. To further strengthen security and improve key management, the private key is subsequently stored securely as a secret in Azure Key Vault and retrieved when needed, eliminating the need to rely on locally stored credentials. Lastly, Checkov will be integrated into the workflow to perform security scanning of the Terraform IaC, enabling security misconfigurations and policy violations to be identified and remediated prior to deployment, reinforcing a shift-left security approach and promoting more secure and compliant infrastructure provisioning.
 
 ## Steps Taken
 
@@ -44,19 +44,19 @@ Azure Cloudshell was launched from Azure Portal, and a storage was specified to 
 
 ![image](Images/Init.png)
 
-Below is a snippet of the file defining the infrastructure.
+Below is a snippet of the file (main.tf) defining the infrastructure.
 
 ![image](Images/main.png)
 ![image](Images/main2.png)
 
 ### Deployment of Azure infrastructure with Terraform
 
-After the neccessary files are in place, the command 'Terraform plan' was used to generate a preview of changes Terraform intends to make. 
+After the neccessary files are in place, the command 'terraform plan' was used to generate a preview of changes Terraform intends to make. 
 
 ![image](Images/plan1.png)
 ![image](Images/plan2.png)
 
-Afterwards, 'Terraform Apply' command is used to apply the changes generated from the last command basically creating the infrastructure.  
+Afterwards, 'terraform apply' command is used to apply the changes generated from the last command basically creating the infrastructure.  
 
 ![image](Images/plan3.png)
 ![image](Images/plan4.png)
@@ -72,7 +72,7 @@ Azure Bastion was deployed to enable secured access to the virtual machine.
 
 ![image](Images/create_bastion.png)
 
-Recall that the SSH public key has already been integrated in the VM by Azure. Here, the SSH private key is specified to complete the authentication. 
+Recall that the SSH public key has already been integrated in the VM by Azure. Here, the SSH private key available on the local computer is specified to complete the authentication. 
 
 ![image](Images/access_vm.png)
 
@@ -84,7 +84,7 @@ Instead of relying on the manual upload of the SSH private key during authentica
 
 ![image](Images/createkeyvault.png)
 
-To create a secret in the just created key vault, the user was assigned the appropriate role-based access control (RBAC) role.
+To create a secret in the newly created key vault, the user was assigned the appropriate role-based access control (RBAC) role.
 
 ![image](Images/rbac.png)
 ![image](Images/rbac2.png)
@@ -121,7 +121,7 @@ The passed checks indicate that the configurations are accurate and safe,
 
 ![image](Images/passed.png)
 
-while the failed checks indicate a misconfiguration in the IaC.
+while the failed checks indicate one or more misconfiguration(s) in the IaC.
 
 ![image](Images/failed.png)
 ![image](Images/failed2.png)
@@ -136,13 +136,13 @@ The next misconfiguration 'ensure VNET subnet is configured with a network secur
 
 The last misconfiguration 'ensure virtual machine extensions are not installed' was investigted. It was observed that the VM has no extension, hence the error was skipped.
 
-Having remediated all the misconfigurations, the IaC was re-scanned, and there was no failed check.
+Having remediated all the misconfigurations, the IaC was re-scanned, and no failed checks were reported.
 
 ![image](Images/remediated.png)
 
 
 ## Conclusion
-This project succesfully demonstrate the application of a shift-left security approach to infrastructure provisioning by integrating security practices early in the IaC development lifecycle.  Furthermore, the project showcases key competencies relevant to DevSecOps and cloud security engineering, including secure infastructure provisioning, IaC security scanning, secrets management, role-based access control, and secure remot eaccess. These capabilities reflect the collaborative role that security engineers play alongside DevOps team in building and maintaining resilient, secure and compliant cloud environments.  
+This project succesfully demonstrate the application of a shift-left security approach to infrastructure provisioning by integrating security practices early in the IaC development lifecycle.  Furthermore, the project showcases key competencies relevant to DevSecOps and cloud security engineering, including secure infastructure provisioning, IaC security scanning, secrets management, role-based access control, and secure remote access. These capabilities reflect the collaborative role that security engineers play alongside DevOps team in building and maintaining resilient, secure and compliant cloud environments.  
 
 ## Past Project
 
