@@ -61,7 +61,7 @@ Afterwards, 'terraform apply' command is used to apply the changes generated fro
 ![image](Images/plan3.png)
 ![image](Images/plan4.png)
 
-Checking through the Azure portal, it was confirmed that the infrastructure were successfully deployed ranging from the resource group to the virtual machine. 
+Checking through the Azure portal, it was confirmed that the infrastructure were successfully deployed, ranging from the resource group to the virtual machine. 
 
 ![image](Images/result.png)
 ![image](Images/result2.png)
@@ -139,6 +139,8 @@ The last misconfiguration 'ensure virtual machine extensions are not installed' 
 Having remediated all the misconfigurations, the IaC was re-scanned, and no failed checks were reported.
 
 ![image](Images/remediated.png)
+
+The elimination of the misconfigurations now makes the IaC to be safe for use in future deployments, and the deployment could be further automated with the establishment of a continuous integration/ continuousdelivery (CI/CD) pipeline. 
 
 
 ## Conclusion
